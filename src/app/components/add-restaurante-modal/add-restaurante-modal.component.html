@@ -2,25 +2,24 @@
   <ion-toolbar>
     <ion-title>Añadir Restaurante</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="cancelar()" [disabled]="guardando()">Cancelar</ion-button>
+      <!-- TODO - Añadiremos un botón para cancelar y cerrar el Modal-->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]="form" (ngSubmit)="guardar()">
-
+  <!-- Añadir el [formGroup] y (ngSubmit) para guardar-->
+  <form>
     <ion-list lines="full">
-
+      <!-- TODO - Añadir los campos necesarios a cada ion-input-->
       <!-- Nombre -->
       <ion-item>
-        <ion-input
-          label="Nombre *"
-          labelPlacement="stacked"
-          placeholder="Nombre del restaurante"
-          formControlName="documentName">
+        <ion-input>
         </ion-input>
       </ion-item>
+      <!-- TODO - documentName debe ser obligatorio y habrá que comprobar si es invalid && touched
+                - Mostramos un texto "El nombre es obligatorio" mediante <ion-text><small>  
+        -->
       @if (form.get('documentName')?.invalid && form.get('documentName')?.touched) {
         <ion-text color="danger" class="ion-padding-start">
           <small>El nombre es obligatorio</small>
@@ -29,46 +28,29 @@
 
       <!-- Territorio -->
       <ion-item>
-        <ion-input
-          label="Territorio *"
-          labelPlacement="stacked"
-          placeholder="Ej: Bizkaia"
-          formControlName="territory">
+        <ion-input>
         </ion-input>
       </ion-item>
-      @if (form.get('territory')?.invalid && form.get('territory')?.touched) {
-        <ion-text color="danger" class="ion-padding-start">
-          <small>El territorio es obligatorio</small>
-        </ion-text>
-      }
+      <!-- TODO - territory debe ser obligatorio y habrá que comprobar si es invalid && touched
+                - Mostramos un texto "El territorio es obligatorio" mediante <ion-text><small>  
+        -->
 
       <!-- Localidad -->
       <ion-item>
-        <ion-input
-          label="Localidad"
-          labelPlacement="stacked"
-          placeholder="Ej: Bilbao"
-          formControlName="locality">
+        <ion-input>
         </ion-input>
       </ion-item>
 
       <!-- Dirección -->
       <ion-item>
-        <ion-input
-          label="Dirección"
-          labelPlacement="stacked"
-          placeholder="Calle y número"
-          formControlName="address">
+        <ion-input>
         </ion-input>
       </ion-item>
 
       <!-- Teléfono -->
       <ion-item>
         <ion-input
-          label="Teléfono"
-          labelPlacement="stacked"
           type="tel"
-          placeholder="9XXXXXXXX"
           formControlName="phone">
         </ion-input>
       </ion-item>
@@ -76,10 +58,7 @@
       <!-- Web -->
       <ion-item>
         <ion-input
-          label="Web"
-          labelPlacement="stacked"
           type="url"
-          placeholder="https://..."
           formControlName="web">
         </ion-input>
       </ion-item>
@@ -87,8 +66,6 @@
       <!-- Estrellas Michelin -->
       <ion-item>
         <ion-input
-          label="Estrellas Michelin"
-          labelPlacement="stacked"
           type="number"
           min="0"
           max="3"
@@ -99,8 +76,6 @@
       <!-- Soles Repsol -->
       <ion-item>
         <ion-input
-          label="Soles Repsol"
-          labelPlacement="stacked"
           type="number"
           min="0"
           max="3"
@@ -110,16 +85,9 @@
 
     </ion-list>
 
+    <!-- TOOD - Se valorará añadir y controlar un spinner y hacer uso de Signals guardando para mostrar un mensaje u otro-->
     <div class="ion-padding-top">
-      <ion-button expand="block" type="submit" [disabled]="form.invalid || guardando()">
-        @if (guardando()) {
-          <ion-spinner name="crescent" slot="start"></ion-spinner>
-          Guardando...
-        } @else {
-          <ion-icon slot="start" name="save-outline"></ion-icon>
-          Guardar en Firebase
-        }
-      </ion-button>
+
     </div>
 
   </form>
